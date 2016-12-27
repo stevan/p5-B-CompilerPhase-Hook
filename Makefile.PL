@@ -16,7 +16,6 @@ my %WriteMakefileArgs = (
     'LICENSE'            => 'perl',
     'NORECURS'           => 1,
     'PREREQ_PM'  => {
-        # core ....
         # tests ..
         'Test::More'         => 0,
         # gonna need these later ...

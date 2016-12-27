@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use Test::More;
-use Data::Dumper;
 
 BEGIN {
 	use_ok('B::CompilerPhase::Hook', qw[

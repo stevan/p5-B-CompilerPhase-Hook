@@ -1,5 +1,5 @@
 package B::CompilerPhase::Hook;
-# ABSTRACT: Hooks for run callbacks in Perl's multiple compiler phases
+# ABSTRACT: Programatically install BEGIN/CHECK/INIT/UNITCHECK/END blocks
 
 use strict;
 use warnings;
@@ -34,7 +34,7 @@ __END__
 
 =head1 NAME
 
-B::CompilerPhase::Hook - Hooks for run callbacks in Perl's multiple compiler phases
+B::CompilerPhase::Hook - Programatically install BEGIN/CHECK/INIT/UNITCHECK/END blocks
 
 =head1 SYNOPSIS 
 
