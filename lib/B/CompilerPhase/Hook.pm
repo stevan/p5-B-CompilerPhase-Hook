@@ -15,7 +15,7 @@ BEGIN {
 }
 
 sub import {
-	shift; 
+	shift;
 	if ( @_ ) {
 		my $to   = caller;
 		my $from = __PACKAGE__;
@@ -36,9 +36,13 @@ __END__
 
 B::CompilerPhase::Hook - Programatically install BEGIN/CHECK/INIT/UNITCHECK/END blocks
 
-=head1 SYNOPSIS 
+=head1 VERSION
 
-use B::CompilerPhase::Hook qw[ 
+version 0.01
+
+=head1 SYNOPSIS
+
+use B::CompilerPhase::Hook qw[
 	enqueue_BEGIN
 	enqueue_CHECK
 	enqueue_INIT
@@ -46,9 +50,9 @@ use B::CompilerPhase::Hook qw[
 	enqueue_END
 ];
 
-# We call these functions within BEGIN 
+# We call these functions within BEGIN
 # blocks so that we can be assured they
-# will enqueue properly, see the docs 
+# will enqueue properly, see the docs
 # for more info.
 
 print                         "10. Ordinary code runs at runtime.\n";
@@ -78,43 +82,43 @@ print                         "13.   It only _looks_ like it should be confusing
 
 =head1 DESCRIPTION
 
-This module makes it possible to enqueue callbacks to be run during 
-the various Perl compiler phases, with the aim of doing multi-phase 
-meta programming in a reasonably clean way. 
+This module makes it possible to enqueue callbacks to be run during
+the various Perl compiler phases, with the aim of doing multi-phase
+meta programming in a reasonably clean way.
 
 =head1 FUNCTIONS
 
 These functions either C<push> or C<unshift> onto the respective internal
-arrays for that phase. The distinction is there to preserve the FIFO and 
-LIFO patterns already inherent in the built-in form of compiler phase 
-hooks. 
+arrays for that phase. The distinction is there to preserve the FIFO and
+LIFO patterns already inherent in the built-in form of compiler phase
+hooks.
 
-All of these functions have the C<&> prototype, as such can be called 
-in block form if desired. 
+All of these functions have the C<&> prototype, as such can be called
+in block form if desired.
 
 =head2 C<enqueue_BEGIN( $cb )>
 
-This will C<push> the C<$cb> onto the end of the internal 
-C<BEGIN> array. 
+This will C<push> the C<$cb> onto the end of the internal
+C<BEGIN> array.
 
 =head2 C<enqueue_CHECK( $cb )>
 
-This will C<unshift> the C<$cb> onto the end of the internal 
+This will C<unshift> the C<$cb> onto the end of the internal
 C<CHECK> array.
 
 =head2 C<enqueue_INIT( $cb )>
 
-This will C<push> the C<$cb> onto the end of the internal 
-C<INIT> array. 
+This will C<push> the C<$cb> onto the end of the internal
+C<INIT> array.
 
 =head2 C<enqueue_UNITCHECK( $cb )>
 
-This will C<unshift> the C<$cb> onto the end of the internal 
+This will C<unshift> the C<$cb> onto the end of the internal
 C<UNITCHECK> array.
 
 =head2 C<enqueue_END( $cb )>
 
-This will C<unshift> the C<$cb> onto the end of the internal 
+This will C<unshift> the C<$cb> onto the end of the internal
 C<END> array.
 
 =head1 SEE ALSO
@@ -123,11 +127,22 @@ C<END> array.
 
 =item L<Devel::Hook>
 
-This module provides C<push> and C<unshift> access to the internal 
+This module provides C<push> and C<unshift> access to the internal
 arrays that hold the set of compiler phase callbacks. It relies on
-you to do the right thing when choosing which of the two actions 
+you to do the right thing when choosing which of the two actions
 (C<push> or C<unshift>) to take.
 
 =back
+
+=head1 AUTHOR
+
+Stevan Little <stevan@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2016 by Stevan Little.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
