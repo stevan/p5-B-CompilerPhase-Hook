@@ -1,4 +1,7 @@
 Revision history for Perl extension B::CompilerPhase::Hook
 
+0.02
+	- fixing some POD and code formatting issues
+
 0.01 2016-12-27
     - Initial release to an unsuspecting world

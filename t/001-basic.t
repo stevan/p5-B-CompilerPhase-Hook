@@ -6,13 +6,13 @@ use warnings;
 use Test::More;
 
 BEGIN {
-	use_ok('B::CompilerPhase::Hook', qw[
-		enqueue_BEGIN
-		enqueue_CHECK
-		enqueue_INIT
-		enqueue_UNITCHECK
-		enqueue_END
-	]);
+    use_ok('B::CompilerPhase::Hook', qw[
+       enqueue_BEGIN
+       enqueue_CHECK
+       enqueue_INIT
+       enqueue_UNITCHECK
+       enqueue_END
+    ]);
 }
 
 =pod
@@ -41,24 +41,24 @@ END       { is_deeply( \@DATA, [ 1 .. 16 ], '... got the data in the expected or
 # this is the body of the test
 push @DATA => 10; 
 BEGIN {
-	enqueue_END       { push @DATA => 16 };
-	enqueue_INIT      { push @DATA => 7  };
-	enqueue_UNITCHECK { push @DATA => 4  };
-	enqueue_CHECK     { push @DATA => 6  };
+    enqueue_END       { push @DATA => 16 };
+    enqueue_INIT      { push @DATA => 7  };
+    enqueue_UNITCHECK { push @DATA => 4  };
+    enqueue_CHECK     { push @DATA => 6  };
 }
 push @DATA => 11;
 BEGIN {
-	enqueue_BEGIN { push @DATA => 1  };
-	enqueue_END   { push @DATA => 15 };
-	enqueue_CHECK { push @DATA => 5  };
-	enqueue_INIT  { push @DATA => 8  };
+    enqueue_BEGIN { push @DATA => 1  };
+    enqueue_END   { push @DATA => 15 };
+    enqueue_CHECK { push @DATA => 5  };
+    enqueue_INIT  { push @DATA => 8  };
 }
 push @DATA => 12;
 BEGIN {
-	enqueue_END       { push @DATA => 14 };
-	enqueue_BEGIN     { push @DATA => 2  };
-	enqueue_UNITCHECK { push @DATA => 3  };
-	enqueue_INIT      { push @DATA => 9  };
+    enqueue_END       { push @DATA => 14 };
+    enqueue_BEGIN     { push @DATA => 2  };
+    enqueue_UNITCHECK { push @DATA => 3  };
+    enqueue_INIT      { push @DATA => 9  };
 }
 push @DATA => 13;
 

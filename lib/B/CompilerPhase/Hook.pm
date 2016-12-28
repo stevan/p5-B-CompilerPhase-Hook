@@ -9,21 +9,21 @@ our $AUTHORITY;
 
 use XSLoader;
 BEGIN {
-    $VERSION   = '0.01';
+    $VERSION   = '0.02';
     $AUTHORITY = 'cpan:STEVAN';
     XSLoader::load( __PACKAGE__, $VERSION );
 }
 
 sub import {
-	shift;
-	if ( @_ ) {
-		my $to   = caller;
-		my $from = __PACKAGE__;
-		foreach ( @_ ) {
-			no strict 'refs';
-			*{ $to . '::' . $_ } = $from->can( $_ );
-		}
-	}
+    shift;
+    if ( @_ ) {
+        my $to   = caller;
+        my $from = __PACKAGE__;
+        foreach ( @_ ) {
+            no strict 'refs';
+            *{ $to . '::' . $_ } = $from->can( $_ );
+        }
+    }
 }
 
 1;
@@ -38,47 +38,47 @@ B::CompilerPhase::Hook - Programatically install BEGIN/CHECK/INIT/UNITCHECK/END 
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
-use B::CompilerPhase::Hook qw[
-	enqueue_BEGIN
-	enqueue_CHECK
-	enqueue_INIT
-	enqueue_UNITCHECK
-	enqueue_END
-];
+  use B::CompilerPhase::Hook qw[
+      enqueue_BEGIN
+      enqueue_CHECK
+      enqueue_INIT
+      enqueue_UNITCHECK
+      enqueue_END
+  ];
 
-# We call these functions within BEGIN
-# blocks so that we can be assured they
-# will enqueue properly, see the docs
-# for more info.
+  # We call these functions within BEGIN
+  # blocks so that we can be assured they
+  # will enqueue properly, see the docs
+  # for more info.
 
-print                         "10. Ordinary code runs at runtime.\n";
-BEGIN {
-	enqueue_END       { print "16. So this is the end of the tale.\n" };
-	enqueue_INIT      { print " 7. INIT blocks run FIFO just before runtime.\n" };
-	enqueue_UNITCHECK { print " 4. And therefore before any CHECK blocks.\n" };
-	enqueue_CHECK     { print " 6. So this is the sixth line.\n" }
-}
-print                         "11. It runs in order, of course.\n";
-BEGIN {
-	enqueue_BEGIN     { print " 1. BEGIN blocks run FIFO during compilation.\n" }
-	enqueue_END       { print "15. Read perlmod for the rest of the story.\n" }
-	enqueue_CHECK     { print " 5. CHECK blocks run LIFO after all compilation.\n" }
-	enqueue_INIT      { print " 8. Run this again, using Perl's -c switch.\n" }
-}
-print                         "12. This is anti-obfuscated code.\n";
-BEGIN {
-	enqueue_END       { print "14. END blocks run LIFO at quitting time.\n" }
-	enqueue_BEGIN     { print " 2. So this line comes out second.\n" }
-	enqueue_UNITCHECK { print " 3. UNITCHECK blocks run LIFO after each file is compiled.\n" }
-	enqueue_INIT      { print " 9. You'll see the difference right away.\n" }
-}
-print                         "13.   It only _looks_ like it should be confusing.\n";
+  print                         "10. Ordinary code runs at runtime.\n";
+  BEGIN {
+      enqueue_END       { print "16. So this is the end of the tale.\n" };
+      enqueue_INIT      { print " 7. INIT blocks run FIFO just before runtime.\n" };
+      enqueue_UNITCHECK { print " 4. And therefore before any CHECK blocks.\n" };
+      enqueue_CHECK     { print " 6. So this is the sixth line.\n" }
+  }
+  print                         "11. It runs in order, of course.\n";
+  BEGIN {
+      enqueue_BEGIN     { print " 1. BEGIN blocks run FIFO during compilation.\n" }
+      enqueue_END       { print "15. Read perlmod for the rest of the story.\n" }
+      enqueue_CHECK     { print " 5. CHECK blocks run LIFO after all compilation.\n" }
+      enqueue_INIT      { print " 8. Run this again, using Perl's -c switch.\n" }
+  }
+  print                         "12. This is anti-obfuscated code.\n";
+  BEGIN {
+      enqueue_END       { print "14. END blocks run LIFO at quitting time.\n" }
+      enqueue_BEGIN     { print " 2. So this line comes out second.\n" }
+      enqueue_UNITCHECK { print " 3. UNITCHECK blocks run LIFO after each file is compiled.\n" }
+      enqueue_INIT      { print " 9. You'll see the difference right away.\n" }
+  }
+  print                         "13.   It only _looks_ like it should be confusing.\n";
 
-# With apologies to the `BEGIN-UNITCHECK-CHECK-INIT-and-END` section of `perlmod`
+  # With apologies to the `BEGIN-UNITCHECK-CHECK-INIT-and-END` section of `perlmod`
 
 =head1 DESCRIPTION
 
