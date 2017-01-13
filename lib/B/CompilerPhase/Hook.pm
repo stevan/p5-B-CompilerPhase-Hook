@@ -9,9 +9,16 @@ our $AUTHORITY;
 
 use XSLoader;
 BEGIN {
-    $VERSION   = '0.02';
+    $VERSION   = '0.03';
     $AUTHORITY = 'cpan:STEVAN';
     XSLoader::load( __PACKAGE__, $VERSION );
+
+    # now set up the DWIM methods ...
+    *enqueue_BEGIN     = \&append_BEGIN;
+    *enqueue_CHECK     = \&prepend_CHECK;
+    *enqueue_INIT      = \&append_INIT;
+    *enqueue_UNITCHECK = \&prepend_UNITCHECK;
+    *enqueue_END       = \&prepend_END;
 }
 
 sub import {
@@ -121,6 +128,15 @@ C<UNITCHECK> array.
 This will C<unshift> the C<$cb> onto the end of the internal
 C<END> array.
 
+=head1 LOWER LEVEL FUNCTIONS
+
+For each of the phases we have a C<prepend_${phase}> function, which
+will C<push> and an C<append_${phase}> function which will C<unshift>.
+
+These should be used with caution and only if you really understand
+what you are doing. For most cases you can just use the C<enqueue>
+variants above and all will be well.
+
 =head1 SEE ALSO
 
 =over 4
@@ -140,7 +156,7 @@ Stevan Little <stevan@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Stevan Little.
+This software is copyright (c) 2017 by Stevan Little.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
