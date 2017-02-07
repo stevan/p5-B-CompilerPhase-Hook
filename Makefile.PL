@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
     'NAME'               => 'B::CompilerPhase::Hook',
-    'VERSION'            => '0.03',
+    'VERSION'            => '0.04',
     'DISTNAME'           => 'B-CompilerPhase-Hook',
     'ABSTRACT'           => 'Programatically install BEGIN/CHECK/INIT/UNITCHECK/END blocks',
     'AUTHOR'             => 'Stevan Little',

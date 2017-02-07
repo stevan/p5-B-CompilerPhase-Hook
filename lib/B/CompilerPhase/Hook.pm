@@ -9,7 +9,7 @@ our $AUTHORITY;
 
 use XSLoader;
 BEGIN {
-    $VERSION   = '0.03';
+    $VERSION   = '0.04';
     $AUTHORITY = 'cpan:STEVAN';
     XSLoader::load( __PACKAGE__, $VERSION );
 
