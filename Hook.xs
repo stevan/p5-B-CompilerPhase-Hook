@@ -132,3 +132,41 @@ append_END(handler)
         SvREFCNT_inc(handler);
         av_push(PL_endav, handler);
 
+MODULE = B::CompilerPhase::Hook  PACKAGE = B::CompilerPhase::Hook::Debug
+
+AV*
+get_END_array()
+    CODE:
+        RETVAL = PL_endav;
+    OUTPUT:
+        RETVAL
+
+AV*
+get_BEGIN_array()
+    CODE:
+        RETVAL = PL_beginav;
+    OUTPUT:
+        RETVAL
+
+AV*
+get_CHECK_array()
+    CODE:
+        RETVAL = PL_checkav;
+    OUTPUT:
+        RETVAL
+
+AV*
+get_INIT_array()
+    CODE:
+        RETVAL = PL_initav;
+    OUTPUT:
+        RETVAL
+
+AV*
+get_UNITCHECK_array()
+    CODE:
+        RETVAL = PL_unitcheckav;
+    OUTPUT:
+        RETVAL
+
+
