@@ -43,7 +43,7 @@ BEGIN {
     enqueue_BEGIN { push @TEST => 2 };
     prepend_BEGIN { push @TEST => 1 };
     append_BEGIN  { push @TEST => 3 };
-    is(scalar(@{ B::CompilerPhase::Hook::Debug::get_BEGIN_array() }), 3, '... BEGIN now has one, which will run immediately afterwards');
+    is(scalar(@{ B::CompilerPhase::Hook::Debug::get_BEGIN_array() }), 3, '... BEGIN now has three, which will run immediately afterwards');
     is(scalar(@TEST), 0, '... (still) got the undefined TEST');
 }
 BEGIN {
