@@ -2,8 +2,12 @@ Revision history for Perl extension B::CompilerPhase::Hook
 
 0.04
     [ENHANCEMENTS]
-    - added some basic debug routines to help
-        - added some tests that use this
+    - added some basic debug routines to
+      Util:: sub-namespace
+
+    [TESTS]
+    - added some more tests for all the
+      functions and phases
 
 0.03 2017-01-13
     [ENHANCEMENTS]
