@@ -1,6 +1,6 @@
 Revision history for Perl extension B::CompilerPhase::Hook
 
-0.04
+0.04  2017-02-08
     [ENHANCEMENTS]
     - added some basic debug routines to
       Util:: sub-namespace
