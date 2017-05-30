@@ -3,6 +3,8 @@
 This provides access to the BEGIN/CHECK/INIT/UNITCHECK/END
 blocks with a clean API.
 
+[![CPAN version](https://badge.fury.io/pl/B-CompilerPhase-Hook.svg)](https://metacpan.org/pod/B-CompilerPhase-Hook)
+
 # Copyright and License
 
 This software is copyright (c) 2017 by Stevan Little.
